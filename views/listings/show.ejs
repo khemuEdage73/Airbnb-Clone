@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
+<% layout("/layout/boilerplate") -%>
+    
     <ul>
         <li>
             <%= listing.title %>
@@ -16,7 +8,7 @@
             <%= listing.description %>
         </li>
         <li>
-           &#8377; <%= listing.price.tolocaleString() %>.
+           &#8377; <%= listing.price.toLocaleString() %>.
         </li>
         <li>
             <%= listing.location %>
@@ -24,10 +16,8 @@
         <li>
             <%= listing.country %>
         </li>
+        <a href="/listings/<%=listing.id %>/edit"><button>Edit</button></a>
     <form action="/listings/<%= listing._id %>/?_method=delete" method="post">
         <button type="submit">Delete</button>
     </form>
     </ul>
-</body>
-
-</html>

@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method",{
-  method:["POST", "GET"]
+  methods:["POST", "GET"]
 }));
 app.engine('ejs', engine);
 
@@ -46,6 +46,7 @@ app.get("/listings/new", (req, res) => {
 
 app.post("/listings/new", async (req, res) => {
   let listing = req.body;
+  console.log(listing);
   try {
     let newListing = new Listing(listing);
     await newListing.save();
@@ -67,7 +68,6 @@ app.get("/listings/:id", async (req, res) => {
 app.get("/listings/:id/edit", async(req, res) =>{
   let id = req.params.id;
   let listing = await Listing.findById(id);
-  console.log(listing);
   res.render("listings/edit.ejs", {listing})
 })
 
@@ -85,7 +85,6 @@ app.put("/listings/:id", async(req, res) =>{
 //delete Route
 app.delete("/listings/:id", async (req, res) => {
   let id = req.params.id;
-  console.log("I am here");
   try {
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");

@@ -1,6 +1,34 @@
 <% layout("/layout/boilerplate") -%>
-    
-    <ul>
+    <div class="row offset-3">
+        <div class="col-8">
+            <h3>Listing Details:</h3>
+        </div>
+        <div class="card col-6">
+            <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing image" style="height: 20rem;">
+            <div class="card-body">
+                <p class="card-text">
+                 <b> <%= listing.title %> </b> <br>
+                    <%= listing.description %> <br>
+                    <% if(listing.price){ %>
+                  &#8377;<%= listing.price.toLocaleString() %> / night
+               <% } else { %>
+                  Price not available
+               <% } %><br>
+                        <%= listing.location %> <br>
+                            <%= listing.country %>
+                </p>
+                <div class="btns">
+                    <a href="/listings/<%=listing.id %>/edit"><button class="btn btn-dark">Edit</button></a>
+                    <!-- <form action="/listings/<%= listing._id %>/?_method=delete" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form> -->
+                    <a href="/listings/<%= listing._id %>?_method=delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <ul>
         <li>
             <%= listing.title %>
         </li>
@@ -15,9 +43,9 @@
         </li>
         <li>
             <%= listing.country %>
-        </li>
-        <a href="/listings/<%=listing.id %>/edit"><button>Edit</button></a>
+        </li> -->
+    <!-- <a href="/listings/<%=listing.id %>/edit"><button>Edit</button></a>
     <form action="/listings/<%= listing._id %>/?_method=delete" method="post">
         <button type="submit">Delete</button>
-    </form>
-    </ul>
+    </form> -->
+    <!-- </ul> -->

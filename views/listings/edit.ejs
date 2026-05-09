@@ -1,7 +1,7 @@
 <%- layout("/layout/boilerplate") -%>
 
     <div class="row col-8 offset-2 edit-form">
-        <h3>Edit the listing</h3>
+        <h3 class="mt-2">Edit the listing</h3>
         <form action="/listings/<%= listing.id %>?_method=put" method="post">
             <div>
                 <label for="title" class="form-label">Title:</label>

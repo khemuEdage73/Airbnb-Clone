@@ -5,6 +5,8 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const Listing = require("./models/listings.js");
 const engine = require('ejs-mate');
+const listingSchema = require("./schema.js"); 
+const CustomError = require("./error.js");
 
 //const variables
 const app = express();
@@ -19,6 +21,23 @@ app.use(methodOverride("_method",{
   methods:["POST", "GET"]
 }));
 app.engine('ejs', engine);
+
+
+function asyncWrapper(fn){
+  let wrapper_func = (req, res, next) =>{
+    fn(req, res, next).catch(err => next(err));
+  }
+  return wrapper_func;
+}
+
+
+function validateListing(req, res, next){
+  let {err} = listingSchema.validate(req.body);
+  if(err){
+    let msg = error.details.map(el=> el.message).join(",");
+    throw new CustomError (msg, 400);
+  }
+}
 
 //connection db
 async function main() {
@@ -40,11 +59,11 @@ app.get("/listings", async (req, res) => {
 });
 
 //new listing
-app.get("/listings/new", (req, res) => {
+app.get("/listings/new",  (req, res) => {
   res.render("listings/new.ejs");
 });
 
-app.post("/listings/new", async (req, res) => {
+app.post("/listings/new", validateListing, async (req, res) => {
   let listing = req.body;
   console.log(listing);
   try {
@@ -92,6 +111,21 @@ app.delete("/listings/:id", async (req, res) => {
     console.log("Problem while deleting listing", err);
   }
 });
+
+app.get("/admin", (req, res)=>{
+  throw new CustomError(403, "Access to admin is forbidden");
+})
+
+app.all("*splat", (req, res, next)=> {
+  next(new customError("Page not found", 404));
+})
+
+app.use((err, req, res, next)=> {
+  let {statusCode = 500, message = "something went wrong"} = err;
+  res.render("error.ejs", {err:{statusCode, message}});
+});
+
+
 
 app.listen(port, (req, res) => {
   console.log(`listening to the port${port}`);

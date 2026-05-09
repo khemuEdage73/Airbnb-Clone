@@ -1,9 +1,12 @@
 body{
     margin: 0px;
     padding: 0px;
-    height: 100vh !important;
+    min-height: 100vh !important;
 }
 
+.container{
+    height: 100% !important;
+}
 
 /* Navbar */
 .fa-compass{
@@ -41,9 +44,9 @@ a{
     align-items: center;
     padding: 10px 0px;
     box-sizing: border-box;
-    position: fixed;
+    /* position: fixed;
     bottom: 0px;
-    width: 100% !important;
+    width: 100% !important; */
 }
 
 .fa-brands:hover{

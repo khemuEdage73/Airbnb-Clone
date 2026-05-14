@@ -1,11 +1,13 @@
 body{
     margin: 0px;
     padding: 0px;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh !important;
 }
 
 .container{
-    height: 100% !important;
+    flex-grow: 1;
 }
 
 /* Navbar */
@@ -15,7 +17,7 @@ body{
 }
 
 /* card styling */
-.card{
+.show-card{
     border: none;
     margin-bottom: 5rem !important;
 }
@@ -66,4 +68,5 @@ a{
     height: 30vh !important;
 }
 
-/* Edit */
+/* Review */
+

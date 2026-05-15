@@ -3,7 +3,6 @@ const express = require("express");
 const path = require("path");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
-const Listing = require("./models/listings.js");
 const engine = require("ejs-mate");
 const CustomError = require("./error.js");
 const listingRouter = require("./routes/listings.js");
@@ -41,10 +40,21 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
+//filter
+app.get("/listings", async(req, res) =>{
+ let filter = {};
+
+  filter.category = req.query.category;
+  console.log(filter.category);
+  filter.facilities = req.query.facilities;
+  console.log(filter.facilities);
+})
 
 app.use("/listings", listingRouter);
 //Reviews
 app.use("/listings/:id/reviews", reviewRouter);
+
+
 
 
 //error handling for other invalid routes

@@ -6,7 +6,9 @@ const listingSchema = Joi.object({
     image: Joi.string().uri(),
     price: Joi.number(),
     location: Joi.string(),
-    country: Joi.string
+    country: Joi.string,
+    category: Joi.string,
+    facilities: Joi.string,
 });
 
 const reviewSchema = Joi.object({

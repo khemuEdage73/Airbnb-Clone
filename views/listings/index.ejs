@@ -1,6 +1,29 @@
 <%- layout("/layout/boilerplate") -%>
+
+<h1 class="mt-2">All Listings</h1>
+<div class="row mb-4">
+     <form action="/listings" method="get">
+        <div class="mb-4">
+           <label for="category"><b>Category:</b></label>
+           <select name="listing[category]" id="category" class="form-select-sm">
+               <option selected>Select Category</option>
+               <option value="Mountain">Mountain</option>
+               <option value="Beach">Beach</option>
+               <option value="Farm">Farm</option>
+               <option value="City">City</option>
+        </select>
+        </div>
+        <div class="mb-3">
+            <label for="">Facilities:</label>
+            <input type="checkbox" name="facilities" value="Wifi" class="form-check-input">Wifi
+            <input type="checkbox" name="facilities" value="pool" class="form-check-input">pool
+            <input type="checkbox" name="facilities" value="Parking" class="form-check-input">Parking
+            <input type="checkbox" name="facilities" value="AC" class="form-check-input">AC
+        </div>
+        <button class="btn btn-dark">Filter</button>
+     </form>
+</div>
    
-    <h1 class="mt-2">All Listings</h1>
   <div class="row row-cols-lg-3 row-cols-sm-1 row-cols-md-2  "> 
      <% for (let listing of listings) { %>
         <a href="/listings/<%=listing.id %>">

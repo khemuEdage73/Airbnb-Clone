@@ -62,6 +62,27 @@
                     please enter Country.
                 </div>
             </div>
+            <div>
+                <label for="category" class="form-label">Category:</label>
+                <select name="listing[category]" class="form-select">
+
+                    <option value="Mountain">Mountain</option>
+
+                    <option value="Beach">Beach</option>
+
+                    <option value="Farm">Farm</option>
+
+                    <option value="City">City</option>
+
+                </select>
+            </div>
+            <div class="mt-2">
+                <label for="" class="form-check-label">Facilities:</label>
+                <input type="checkbox" name="listing[facilities]" value="WiFi" class="form-check-input"> WiFi
+                <input type="checkbox" name="listing[facilities]" value="Pool" class="form-check-input"> Pool
+                <input type="checkbox" name="listing[facilities]" value="Parking" class="form-check-input">Parking
+                <input type="checkbox" name="listing[facilities]" value="AC" class="form-check-input"> AC
+            </div>
             <button type="submit" class="btn btn-dark mt-3">Add listing</button>
         </form>
     </div>

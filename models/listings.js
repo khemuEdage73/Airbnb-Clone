@@ -25,6 +25,12 @@ const listingSchema = new mongoose.Schema({
       ref: "Review",
     },
   ],
+  category:{
+    type: String
+  },
+  facilities:{
+    type: String,
+  }
 });
 
 listingSchema.post("findOneAndDelete", async(data)=>{
